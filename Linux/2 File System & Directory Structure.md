@@ -78,6 +78,7 @@ A symbolic link is created using the `ln -s` command.
 ### Syntax
 ```bash
 ln -s <target_file> <link_name>
+```
 
 ## What is /proc file system?
 The `/proc` file system is a virtual file system in Linux that provides real-time information about the system and running processes. It does not store actual files on disk; instead, it generates information dynamically from the kernel.  
