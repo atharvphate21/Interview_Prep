@@ -1,79 +1,54 @@
-# 1. Linux Fundamentals
+## What is a process?
+In Linux, a process is a running instance of a program. Each process has a unique PID (Process ID), uses system resources like CPU and memory, and can be managed using commands like `ps`, `top`, or `kill`. Processes can run in the foreground or background.
 
-## What is Linux?
-->Linux is an open-source, Unix-like operating system that manages computer hardware and software resources and allows users to interact with the system through a command-line or graphical interface. It is widely used in servers, cloud environments, and DevOps because it is secure, stable, and customizable.
+## What is PID and PPID?
+In Linux, PID (Process ID) is a unique number assigned to each running process. PPID (Parent Process ID) is the PID of the process that started or spawned the current process. These IDs help track and manage process relationships in the system.
 
-## What is an Operating System?
-->An Operating System (OS) is system software that acts as an interface between the user and the computer hardware. It manages resources like CPU, memory, storage, and devices, and allows users to run applications smoothly and efficiently.
+## What is Zombie process?
+In Linux, a zombie process is a process that has finished execution but still has an entry in the process table. It occurs when the parent process has not read the child’s exit status using `wait()`. Zombies don’t use CPU but occupy system memory until cleared.
 
-## What are types of Operating Systems?
-There are several types of Operating Systems: Batch OS (executes tasks in batches without user interaction), Time-Sharing OS (allows multiple users to share system resources simultaneously), Distributed OS (manages multiple computers and makes them work as a single system), Real-Time OS (provides immediate response, used in critical systems), Multiprocessing OS (supports multiple CPUs), and Multi-User OS (allows multiple users to access the system at the same time).
+## What is orphan process?
+In Linux, an orphan process is a running process whose parent has terminated. Orphan processes are automatically adopted by the `init` process (PID 1) to ensure they are properly managed and do not remain unmanaged in the system.
 
-## Differentiate between Linux and Unix.
-Linux is an open-source, Unix-like operating system developed by Linus Torvalds, while Unix is a proprietary operating system originally developed at AT&T’s Bell Labs. Linux is free to use, modify, and distribute, whereas most Unix systems are commercial and require a license. Linux runs on a wide range of hardware including PCs and servers, while Unix is mainly used in enterprise servers and high-end systems. Both are stable and secure, but Linux is more widely used today, especially in cloud and DevOps environments.
+## Difference between process and thread?
+In Linux, a process is an independent program running with its own memory and resources, while a thread is a smaller unit within a process that shares the same memory and resources with other threads of that process. Threads are lighter, faster, and used for concurrent execution inside a process.
 
-## Difference between Linux and Windows.
-Linux is an open-source operating system, while Windows is a proprietary operating system developed by Microsoft. Linux is free to use, highly customizable, and mainly used in servers and cloud environments, whereas Windows requires a license and is commonly used in personal computers and enterprise desktops. Linux is more secure and stable for server environments, while Windows is more user-friendly and widely used for everyday applications and gaming.
+## How to list running processes?
+In Linux, we can list running processes using the `ps` command for a snapshot or `top`/`htop` for a dynamic view. `ps aux` shows all processes with details like PID, CPU, and memory usage, helping monitor and manage system activity.
 
-## Define Linux Kernel.
-The Linux Kernel is the core component of the Linux operating system that directly interacts with the hardware. It manages system resources such as CPU, memory, devices, and processes, and acts as a bridge between hardware and software applications. Without the kernel, the operating system cannot function.
+## Difference between ps and top?
+In Linux, `ps` shows a static snapshot of running processes at the moment you run it, while `top` provides a dynamic, real-time view of processes, updating continuously. `ps` is good for quick checks, and `top` is useful for monitoring system performance.
 
-## What are the basic features of Linux?
-The basic features of Linux are that it is open-source, multi-user, and multitasking. It provides strong security and permission management, supports multiple file systems, and offers both command-line and graphical interfaces. Linux is also known for its stability, portability, and high performance, which makes it widely used in servers and cloud environments.
+## Explain top command.
+In Linux, the `top` command shows a real-time view of running processes and system resource usage, including CPU, memory, and load. It displays PID, user, CPU%, memory%, and process status. You can interact with it to sort, kill, or renice processes, making it useful for monitoring system performance.
 
-## What are Linux distributions? Name common distros.
-Linux distributions are complete operating systems built using the Linux kernel along with system tools, libraries, and package managers. They provide a ready-to-use environment for users.
-Some common Linux distributions are Ubuntu, CentOS, Red Hat Enterprise Linux (RHEL), Debian, and Fedora.
+## What is nice and renice?
+In Linux, `nice` is used to start a process with a specific priority, affecting how the CPU schedules it. `renice` changes the priority of an already running process. Higher nice values lower priority, and lower values increase priority, helping manage CPU resources efficiently.
 
-## Explain Linux architecture.
-Linux architecture is divided into layers. At the bottom is the Hardware (CPU, memory, disk, devices). Above that is the Kernel, which is the core of Linux and manages processes, memory, device drivers, and system calls. Above the kernel is the Shell and System Libraries, which allow users and applications to communicate with the kernel. At the top are User Applications, such as commands, tools, and software programs.
-In simple terms, users interact with applications, applications communicate with the kernel, and the kernel controls the hardware.
+## How to change priority of process?
+In Linux, we can change a process’s priority using `nice` when starting it, for example `nice -n 10 command`. For running processes, we use `renice`, for example `renice -n 5 -p PID`. Lower values increase priority, and higher values decrease it, controlling CPU allocation.
 
-## What is the first process in Linux? (PID 1)
-The first process in Linux is init (PID 1). It is the parent of all processes and is started by the kernel during system boot. Its main responsibility is to initialize the system, start essential services, and manage other processes. In modern Linux systems, systemd usually replaces the traditional init process, but it still runs as PID 1.
+## What is load average?
+In Linux, load average shows the average number of processes waiting to run over a period of time. It is displayed as three numbers representing 1, 5, and 15 minutes. Load average helps monitor system performance and CPU workload.
 
-## What is systemd?
-systemd is a system and service manager in modern Linux systems. It is the first process started during boot (PID 1) and is responsible for initializing the system, starting and managing services, handling background processes, and maintaining system state. It also manages tasks like logging, device management, and scheduling services.
+## How to kill a process?
+In Linux, we can kill a process using the `kill` command followed by its PID, for example `kill 1234`. For forceful termination, we use `kill -9 1234`. We can also use `pkill process_name` or `killall process_name` to terminate by name instead of PID.
 
-## Explain the Linux boot process.
-The Linux boot process happens in the following steps:
-- BIOS/UEFI – When the system is powered on, BIOS or UEFI initializes the hardware and looks for a bootable device.
-- Bootloader (GRUB) – The bootloader loads the Linux kernel into memory.
-- Kernel – The kernel initializes hardware, mounts the root file system, and starts the first process.
-- Init/Systemd (PID 1) – systemd starts system services and background processes.
-- User Login – The system becomes ready, and the user can log in through CLI or GUI.
+## How to run a job in background / foreground? (&, fg, bg)
+In Linux, we can run a job in the background by adding `&` at the end of a command, like `command &`. To bring a background job to the foreground, we use `fg`, and to move a suspended job to the background, we use `bg`. These commands help manage multiple tasks in a terminal efficiently.
 
-In simple terms, the system powers on → bootloader loads the kernel → kernel starts system services → system becomes ready for use.
+## How to stop a process temporarily? (Ctrl+Z)
+In Linux, we can stop (suspend) a running process temporarily by pressing `Ctrl+Z`. This pauses the process and puts it in the background as a stopped job. We can later resume it in the foreground with `fg` or in the background with `bg`.
 
-## What are runlevels / systemd targets?
-Runlevels are predefined operating states in Linux that determine which services and processes are running. In older systems using init, runlevels ranged from 0 to 6, where each number represented a different system state (for example, 0 = shutdown, 1 = single-user mode, 3 = multi-user mode, 5 = graphical mode, 6 = reboot).
-In modern Linux systems using systemd, runlevels are replaced by systemd targets. Targets serve the same purpose but are more flexible and descriptive, such as multi-user.target (similar to runlevel 3) and graphical.target (similar to runlevel 5).
+## How to list background jobs? (jobs)
+In Linux, we can list background or suspended jobs in the current shell using the `jobs` command. It shows job IDs, status (running, stopped), and the command name, helping manage multiple tasks in the terminal.
 
-## What is GNU?
-GNU is a free and open-source project started by Richard Stallman to develop a complete Unix-like operating system made entirely of free software. It provides important tools like the GNU Compiler (GCC), shell (Bash), and core utilities. In most Linux systems, the operating system is actually a combination of the Linux kernel and GNU tools, which is why it is sometimes called GNU/Linux.
+## Difference between kill, kill -9, pkill, and killall
+In Linux:
 
-## Difference between kernel space and user space?
-Kernel space and user space are two separate memory areas in an operating system.
-Kernel space is where the kernel runs and has full access to hardware and system resources like CPU, memory, and devices. It operates in a privileged mode, so it can execute critical system operations.
-User space is where user applications and programs run. It has limited access to hardware and cannot directly interact with system resources. Instead, it uses system calls to request services from the kernel.
-In simple terms, user space runs applications, and kernel space controls the system and hardware securely.
+* `kill PID` – Sends a default termination signal (SIGTERM) to a specific process by PID.
+* `kill -9 PID` – Forcefully kills a process using SIGKILL, which cannot be ignored.
+* `pkill process_name` – Kills processes by name instead of PID.
+* `killall process_name` – Terminates all processes with the given name.
 
-## What is a daemon in Linux?
-A daemon in Linux is a background process that runs continuously without direct user interaction and provides system or application services. It usually starts during system boot and runs in the background to handle tasks like web services, logging, or scheduling. For example, the SSH daemon (sshd) allows remote login to the system.
-
-## What is a shell? Types of shells? (bash, sh, zsh, etc.)
-A shell is a command-line interface that allows users to interact with the Linux operating system by entering commands. It acts as a bridge between the user and the kernel, interpreting commands and executing them.
-Common types of shells are Bash (Bourne Again Shell), which is the default in most Linux systems; sh (Bourne Shell), the original Unix shell; Zsh (Z Shell), which offers advanced features and customization; Ksh (Korn Shell); and Csh (C Shell).
-
-## Explain Linux process states (running, sleeping, zombie, stopped).
-Linux processes go through different states during their lifecycle:
-- Running – The process is either currently executing on the CPU or ready to run.
-- Sleeping – The process is waiting for a resource, such as user input, file access, or I/O operation.
-- Stopped – The process has been paused, usually by a signal, and can be resumed later.
-- Zombie – The process has finished execution, but its entry still exists in the process table because the parent process has not yet read its exit status.
-These states help the system manage processes efficiently.
-
-## Difference between Linux and UNIX certification (Single UNIX Spec).
-Linux is an open-source operating system built around the Linux kernel, and it does not require any official certification to be called Linux.
-UNIX, on the other hand, is a trademarked operating system standard. To be officially called UNIX, an operating system must be certified according to the Single UNIX Specification (SUS), which ensures it follows specific standards and compliance rules.
-In simple terms, Linux is Unix-like but not officially UNIX-certified, while UNIX systems must pass formal certification to use the UNIX name.
+These commands provide different ways to stop processes safely or forcefully.
