@@ -1,5 +1,3 @@
-Here are short and meaningful answers for each of your questions:
-
 ## 1. **What is bash?**
 
 * **Bash** (Bourne Again Shell) is a command-line interpreter and scripting language used in Linux and UNIX-based systems for executing commands and writing shell scripts.
