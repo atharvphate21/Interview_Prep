@@ -45,12 +45,12 @@
 ## 11. **Fields of cron?**
 
 * A **cron expression** has 5 fields:
-  `* * * * *`
-  `| | | | |`
-  `| | | | +---- Day of week (0 - 7)`
-  `| | | +------ Month (1 - 12)`
-  `| | +-------- Day of month (1 - 31)`
-  `| +---------- Hour (0 - 23)`
+  `* * * * *`<br>
+  `| | | | |`<br>
+  `| | | | +---- Day of week (0 - 7)`<br>
+  `| | | +------ Month (1 - 12)`<br>
+  `| | +-------- Day of month (1 - 31)`<br>
+  `| +---------- Hour (0 - 23)`<br>
   `+------------ Minute (0 - 59)`
 
 ## 12. **What is crontab?**
