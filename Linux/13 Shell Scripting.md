@@ -44,7 +44,7 @@
 
 ## 11. **Fields of cron?**
 
-* A **cron expression** has 5 fields:
+* A **cron expression** has 5 fields:<br>
   `* * * * *`<br>
   `| | | | |`<br>
   `| | | | +---- Day of week (0 - 7)`<br>
