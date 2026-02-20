@@ -108,3 +108,183 @@ It contains details like the device name, mount point, file system type, mount o
 ## What is mount and unmount?
 - **Mounting:** Attaching a file system (like a hard disk partition, USB drive, or network storage) to a directory in the Linux file system so that its data can be accessed.  
 - **Unmounting:** Safely detaching that file system from the directory, ensuring that all data is properly written and no process is using it before removal.
+
+
+## How to search files modified in last 2 days?
+
+To search for files modified in the last 2 days, we use the `find` command.
+
+**Command:**
+```bash
+find /path -type f -mtime -2
+```
+
+Here:
+- `-type f` searches for regular files  
+- `-mtime -2` means files modified within the last 2 days  
+
+**Example:**
+```bash
+find /home -type f -mtime -2
+```
+
+This will list all files in `/home` that were modified in the last 2 days.
+
+---
+
+## How to find 10 largest files?
+
+To find the 10 largest files in Linux, we use the `du`, `sort`, and `head` commands together.
+
+**Command:**
+```bash
+du -ah /path | sort -rh | head -10
+```
+
+Here:
+- `du -ah` shows size of all files and directories  
+- `sort -rh` sorts them in reverse order (largest first)  
+- `head -10` displays the top 10 results  
+
+**Example:**
+```bash
+du -ah /home | sort -rh | head -10
+```
+
+---
+
+## What permission is needed to delete a file?
+
+To delete a file in Linux, you need **write (`w`) permission on the parent directory**, not on the file itself.
+
+If you have write permission on the directory where the file exists, you can delete the file—even if you don’t have write permission on the file.
+
+---
+
+## How to check inode usage (`df -i`)?
+
+To check inode usage in Linux, we use:
+
+```bash
+df -i
+```
+
+This command displays:
+- Total number of inodes  
+- Used inodes  
+- Free inodes  
+- Percentage of inode usage  
+
+It helps identify if a system is running out of inodes, even if disk space is still available.
+
+---
+
+## What is a block device vs character device?
+
+A **block device**:
+- Stores and transfers data in fixed-size blocks  
+- Allows random access (read/write at any location)  
+- Examples: Hard disks, USB drives (e.g., `/dev/sda`)  
+
+A **character device**:
+- Transfers data one byte at a time  
+- Works sequentially  
+- Does not support random access  
+- Examples: Keyboard, mouse, terminal devices (e.g., `/dev/tty`)  
+
+**In simple terms:**  
+Block devices are used for storage, and character devices are used for data stream devices.
+
+---
+
+## What is journaling in a filesystem (ext3/ext4)?
+
+Journaling is a feature that keeps a **log (journal)** of changes before they are written to disk.
+
+In `ext3` and `ext4` filesystems:
+- It helps prevent data corruption during crashes or power failures  
+- The journal allows faster recovery  
+- Ensures filesystem consistency  
+
+---
+
+## Difference between soft mount and hard mount?
+
+In Linux NFS mounts:
+
+- **Soft mount**  
+  - Stops retrying if the server is unavailable  
+  - Returns an error after timeout  
+  - Less reliable but prevents system hanging  
+
+- **Hard mount**  
+  - Keeps retrying until the server responds  
+  - More reliable  
+  - May cause the system to hang if the server is down  
+
+---
+
+## How to check filesystem type (`lsblk -f`, `blkid`)?
+
+### 1. Using `lsblk -f`
+```bash
+lsblk -f
+```
+Lists:
+- Block devices  
+- Filesystem type  
+- Label  
+- UUID  
+
+### 2. Using `blkid`
+```bash
+blkid
+```
+Displays detailed information about block devices including:
+- Filesystem type  
+- UUID  
+
+Both commands help identify filesystem types (e.g., `ext4`, `xfs`, `vfat`).
+
+---
+
+## How to add/mount new swap space?
+
+Follow these steps:
+
+### 1. Create a swap file (Example: 2GB)
+```bash
+sudo fallocate -l 2G /swapfile
+```
+
+Or if `fallocate` is not available:
+```bash
+sudo dd if=/dev/zero of=/swapfile bs=1M count=2048
+```
+
+### 2. Set correct permissions
+```bash
+sudo chmod 600 /swapfile
+```
+
+### 3. Format the file as swap
+```bash
+sudo mkswap /swapfile
+```
+
+### 4. Enable the swap space
+```bash
+sudo swapon /swapfile
+```
+
+### 5. Verify swap is active
+```bash
+swapon --show
+```
+
+### 6. Make it permanent (add to `/etc/fstab`)
+```
+/swapfile swap swap defaults 0 0
+```
+
+This adds new swap space without requiring a reboot.
