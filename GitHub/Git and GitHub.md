@@ -367,7 +367,7 @@
 
 # 🚀 Git in CI/CD (DevOps-Focused)
 
-### ✅ 1. How does Git integrate with Jenkins?
+### How does Git integrate with Jenkins?
 > Jenkins integrates with Git using plugins like the Git Plugin.
 > When code is pushed to a repository, Jenkins pulls the latest code from Git and triggers the pipeline.
 >
@@ -375,30 +375,30 @@
 >
 > In most setups, this trigger happens through webhooks.
 
-### ✅ 2. How does GitHub Actions trigger a pipeline?
+### How does GitHub Actions trigger a pipeline?
 > GitHub Actions is event-driven.
 > When an event like push, pull request, or tag creation occurs, it triggers the workflow defined in a YAML file inside `.github/workflows/`.
 >
 > The workflow then runs jobs on a GitHub runner.
 
-### ✅ 3. What is a webhook in CI/CD?
+### What is a webhook in CI/CD?
 > A webhook is a mechanism that sends an HTTP POST request to a configured URL when a specific event occurs in Git, like a push or pull request.
 >
 > For example, when code is pushed to GitHub, a webhook notifies Jenkins to start the pipeline automatically.
 
-### ✅ 4. What is shallow clone?
+### What is shallow clone?
 > A shallow clone is when we clone a repository with limited commit history using:
 > `git clone --depth=1`
 >
 > It improves pipeline performance by downloading only the latest commit instead of the full history.
 
-### ✅ 5. Why use specific commit SHA in deployments?
+### Why use specific commit SHA in deployments?
 > Using a specific commit SHA ensures traceability and reproducibility.
 > It guarantees that the exact same version of code can be deployed again if needed.
 >
 > It also helps in debugging and auditing deployments.
 
-### ✅ 6. What is commit hash used for in Docker image tagging?
+### What is commit hash used for in Docker image tagging?
 > The commit hash is often used as a Docker image tag to uniquely identify the build.
 >
 > For example:
@@ -406,12 +406,12 @@
 >
 > This ensures every Docker image is directly linked to a specific Git commit.
 
-### ✅ 7. How do you rollback to previous version using Git?
+### How do you rollback to previous version using Git?
 > If we use Git tags for releases, I checkout the previous stable tag and redeploy it.
 >
 > In CI/CD, we usually redeploy the previous Docker image built from the stable commit SHA.
 
-### ✅ 8. What is tagging strategy in production?
+### What is tagging strategy in production?
 > In production, we use semantic versioning like `v1.0.0`, `v1.1.0`, or `v2.0.1`.
 >
 > Each production release is marked with an annotated tag.
@@ -423,7 +423,7 @@
 
 # 🚀 Advanced Git
 
-### ✅ 1. Explain Git rebase vs cherry-pick with real example.
+### Explain Git rebase vs cherry-pick with real example.
 > Rebase is used to move an entire branch on top of another branch, rewriting commit history to make it linear.
 >
 > Cherry-pick is used to apply a specific commit from one branch onto another branch.
@@ -432,19 +432,19 @@
 >
 > But if I only need one bug-fix commit from another branch, I use cherry-pick instead of merging the entire branch.
 
-### ✅ 2. How does Git handle large files?
+### How does Git handle large files?
 > Git is optimized for text files and tracks changes efficiently using compression and snapshots.
 > However, it does not handle large binary files efficiently because it stores full snapshots instead of diffs for binaries.
 >
 > For large files, we use Git LFS.
 
-### ✅ 3. What is Git LFS?
+### What is Git LFS?
 > Git LFS, or Large File Storage, is an extension that replaces large files with pointers inside Git.
 > The actual large files are stored separately on a remote server.
 >
 > This helps keep the repository lightweight and improves clone performance.
 
-### ✅ 4. How do you squash commits?
+### How do you squash commits?
 > I squash commits using interactive rebase:
 > `git rebase -i HEAD~n`
 >
@@ -452,7 +452,7 @@
 >
 > This is useful before merging feature branches to keep clean commit history.
 
-### ✅ 5. What happens internally when you run `git commit`?
+### What happens internally when you run `git commit`?
 > When I run `git commit`, Git:
 >
 > 1. Takes staged files
@@ -463,12 +463,12 @@
 >
 > Each object is stored with a unique SHA hash.
 
-### ✅ 6. What is a pack file?
+### What is a pack file?
 > A pack file is a compressed file where Git stores multiple objects together to optimize storage and improve performance.
 >
 > Instead of storing each object separately, Git compresses them into pack files, especially during operations like `git gc`.
 
-### ✅ 7. How do you optimize Git repository size?
+### How do you optimize Git repository size?
 > To optimize repo size:
 >
 > * Remove large unnecessary files
@@ -478,16 +478,16 @@
 >
 > Regular maintenance keeps repository lightweight.
 
-### ✅ 8. What is a bare repository?
+### What is a bare repository?
 > A bare repository does not contain a working directory.
 > It only contains Git data and is typically used as a central remote repository for collaboration.
 
-### ✅ 9. What is a Git hook?
+### What is a Git hook?
 > A Git hook is a script that runs automatically when certain Git events occur, like commit, push, or merge.
 >
 > Hooks are used to enforce rules such as code formatting, linting, or preventing commits with secrets.
 
-### ✅ 10. Difference between pre-commit and post-commit hooks?
+### Difference between pre-commit and post-commit hooks?
 > A pre-commit hook runs before a commit is created. It can block the commit if validation fails.
 >
 > A post-commit hook runs after the commit is successfully created and cannot prevent it.
