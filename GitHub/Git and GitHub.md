@@ -1,3 +1,5 @@
+# Basic Concepts
+
 ### What is Git?
 > Git is a distributed version control system used to track changes in source code. It allows multiple developers to work on the same project simultaneously without overwriting each other’s changes. Since it’s distributed, every developer has a full copy of the repository along with its history.
 
