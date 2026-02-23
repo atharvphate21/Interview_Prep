@@ -152,7 +152,7 @@
 ### How to list stashes?
 > I use `git stash list` to see all saved stashes.
 
-# 🔹 Git Internals (Mid-Level + DevOps)
+# 🔹 Git Internals (Devops)
 
 ### What are Git objects?
 > Git stores data as objects in its database. There are four main types of Git objects:
@@ -202,7 +202,7 @@
 > Git subtree also allows including another repository, but unlike submodule, it merges the external project directly into the main repository.
 > It is easier to manage because it does not require separate initialization or cloning steps.
 
-# 🔹 GitHub-Specific Interview Answers
+# 🔹 GitHub-Specific Answers
 
 ### What is GitHub?
 > GitHub is a cloud-based platform that hosts Git repositories and provides collaboration features like pull requests, code reviews, access control, issue tracking, and CI/CD integration.
@@ -247,7 +247,7 @@
 > A webhook is a mechanism that sends real-time HTTP notifications when certain events happen in a repository, like push or pull request creation.
 > It is commonly used to trigger external CI/CD tools like Jenkins.
 
-# 🔐 Authentication & Security (Interview-Ready Answers)
+# 🔐 Authentication & Security
 
 ### Why is password authentication removed from GitHub?
 > GitHub removed password authentication for security reasons.
@@ -363,7 +363,7 @@
 👉 *“How do you ensure traceability in production?”*
 > We use annotated Git tags and commit SHA for Docker image tagging. This ensures we can trace every deployment back to a specific commit.
 
-# 🚀 Git in CI/CD (DevOps-Focused Interview Answers)
+# 🚀 Git in CI/CD (DevOps-Focused)
 
 ### ✅ 1. How does Git integrate with Jenkins?
 > Jenkins integrates with Git using plugins like the Git Plugin.
@@ -419,7 +419,7 @@
 👉 *“How do you ensure safe production deployment?”*
 > We use protected branches, required pull request approvals, automated CI checks, version tagging, and deployment based on specific commit SHA to ensure safe and traceable production releases.
 
-# 🚀 Advanced Git Interview Answers (2–3 Years Level)
+# 🚀 Advanced Git
 
 ### ✅ 1. Explain Git rebase vs cherry-pick with real example.
 > Rebase is used to move an entire branch on top of another branch, rewriting commit history to make it linear.
