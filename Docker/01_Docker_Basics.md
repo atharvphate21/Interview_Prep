@@ -1,4 +1,4 @@
-# 🐳 SECTION 1: Docker Basics – Interview Answers
+# 🐳 SECTION 1: Docker Basics
 
 ### What is Docker?
 > Docker is a containerization platform that allows us to package an application along with its dependencies into a container. This ensures the application runs consistently across different environments like development, testing, and production.
